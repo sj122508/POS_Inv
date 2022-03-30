@@ -7,6 +7,7 @@ function TextArea({
 	defaultValue,
 	maxLength,
 	withValidationMessage,
+	disabled,
 }) {
 	const onInputChange = (e) => {
 		console.log(e.target.value, "aafafwf");
@@ -22,6 +23,7 @@ function TextArea({
 				onChange={onInputChange}
 				defaultValue={defaultValue ? defaultValue : null}
 				maxLength={maxLength}
+				disabled={disabled}
 			/>
 			{withValidationMessage && (
 				<LabelValidation>
@@ -59,7 +61,11 @@ const Container = styled.div`
 		outline: none;
 	}
 
-	input:hover {
+	input:disabled {
+		background-color: #eceef0;
+	}
+
+	input:hover:enabled {
 		border: 1px solid #6495ed;
 		box-shadow: 0.5px 0.5px 5px #6495ed;
 		cursor: pointer;

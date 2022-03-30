@@ -97,6 +97,7 @@ function Login({ userLoggin, login }) {
 					defaultValue=""
 					maxLength={15}
 					withValidationMessage={requiredUsername}
+					disabled={loginProgress}
 				/>
 				<TextArea
 					label="Password"
@@ -104,6 +105,7 @@ function Login({ userLoggin, login }) {
 					defaultValue=""
 					maxLength={15}
 					withValidationMessage={requiredPassword}
+					disabled={loginProgress}
 				/>
 				<Button
 					buttonName="Login"
@@ -130,8 +132,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(Login);
 const Contaniner = styled.div`
 	display: flex;
 	justify-content: center;
+	overflow: hidden;
 	align-items: center;
-	height: 100vh;
+	// height: 100vh;
+	min-height: calc(100vh - 0px);
 	flex-direction: column;
 	background-image: linear-gradient(white, rgb(242, 246, 250));
 `;
