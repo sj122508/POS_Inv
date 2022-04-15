@@ -4,10 +4,6 @@ import styled from "styled-components";
 function ItemsCategory() {
 	return (
 		<Container>
-			{/* <Header>CATEGORIES</Header>
-			<ParentCategory>MILK TEA</ParentCategory>
-			<ParentCategory>COFFEE</ParentCategory> */}
-
 			<ParentCategory>categories</ParentCategory>
 			<Category>Milk Tea</Category>
 			<Category>Coffee</Category>
@@ -22,9 +18,10 @@ function ItemsCategory() {
 export default ItemsCategory;
 
 const Container = styled.div`
+	border: 0.5px solid #dedfe0;
 	display: flex;
 	flex-direction: column;
-	width: 20%;
+	width: 15%;
 	min-height: calc(100vh - 70px);
 	margin: 7px 0 7px 7px;
 	border-radius: 3px;
@@ -41,6 +38,7 @@ const ParentCategory = styled.div`
 	font-weight: 500;
 	color: #427deb;
 	text-transform: uppercase;
+	text-align: left;
 `;
 
 const Category = styled(ParentCategory)`

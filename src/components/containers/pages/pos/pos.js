@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Item from "./items/item";
 import ItemsCategory from "./itemsCategory/itemsCategory";
 import Order from "./orders/order";
-// import { connect } from 'react-redux'
 
 function POS() {
 	return (
