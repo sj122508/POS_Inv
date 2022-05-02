@@ -1,15 +1,23 @@
 import { style } from "@mui/system";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import Item from "./items/item";
 import ItemsCategory from "./itemsCategory/itemsCategory";
 import Order from "./orders/order";
-// import { connect } from 'react-redux'
+import {
+	setItemSelected,
+	setItemSelectedCount,
+} from "../../../../redux/pages/pos/pos.action";
 
-function POS() {
+function POS({ setItemSelected, setItemSelectedCount }) {
+	useEffect(() => {
+		setItemSelected("");
+		setItemSelectedCount("");
+	});
 	return (
 		<Container>
-			{/* <Header>Hello</Header> */}
 			<FilterArea></FilterArea>
 			<ContainerBody>
 				<ItemsCategory />
@@ -20,7 +28,13 @@ function POS() {
 	);
 }
 
-export default POS;
+const mapDispatchToProps = (dispatch) => ({
+	setItemSelected: (itemName) => dispatch(setItemSelected(itemName)),
+	setItemSelectedCount: (itemName) => dispatch(setItemSelectedCount(itemName)),
+});
+
+export default connect(null, mapDispatchToProps)(POS);
+// export default POS;
 
 /////////// STYLED COMPONENTS /////////////
 const Container = styled.div`
@@ -43,6 +57,7 @@ const FilterArea = styled.div`
 	display: flex;
 	height: 55px;
 	box-shadow: 0.5px 0.5px 5px #d6dbdf;
+	background: #427deb;
 `;
 
 const ContainerBody = styled.div`

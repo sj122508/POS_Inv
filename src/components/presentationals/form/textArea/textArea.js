@@ -10,7 +10,6 @@ function TextArea({
 	disabled,
 }) {
 	const onInputChange = (e) => {
-		console.log(e.target.value, "aafafwf");
 		onChange(e.target.value);
 	};
 

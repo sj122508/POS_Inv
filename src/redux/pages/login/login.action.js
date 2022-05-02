@@ -4,11 +4,9 @@ export function userLoggin(userCredential) {
 	return (dispatch, getState) => {
 		dispatch(GET_LOGGIN_START(userCredential));
 		let start = getState().login.loginProgress;
-		console.log(start, "-----------------START---------------------");
 		const inter = setInterval(() => {
 			dispatch(GET_LOGGIN_FINISH());
 			let stop = getState().login.loginProgress;
-			console.log(stop, "-----------------STOP---------------------");
 			clearInterval(inter);
 		}, 5000);
 	};
