@@ -13,8 +13,6 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 	const [itemClicked, setItemClicked] = useState(false);
 	const [itemSelected, setsItemSelected] = useState("");
 
-	useEffect(() => {}, [pos]);
-
 	const handleItemTileClick = (value) => {
 		setItemSelected(value);
 		setItemSelectedCount("");
@@ -192,8 +190,11 @@ const ContentContainer = styled.div`
 	border-radius: 3px;
 	box-shadow: 0.5px 0.5px 10px #d6dbdf;
 	height: ${(props) => (props.itemClicked ? "552px" : "628px")};
+
 	border-top: 10px solid rgba(0, 0, 0, 0);
 	border-bottom: 10px solid rgba(0, 0, 0, 0);
+	// background: grey;
+	// height: inherit;
 
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -235,7 +236,6 @@ const ItemTile = styled.div`
 const ItemImg = styled.div`
 	height: ${(props) => (props.clicked ? "120px" : "100px")};
 	border-radius: 10px;
-	// border: ${(props) => props.clicked && "none"};
 
 	box-shadow: ${(props) => (props.clicked ? "1px 1px 30px #676767" : "")};
 	transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
@@ -268,7 +268,7 @@ const ItemImg = styled.div`
 const ItemDescription = styled.h1`
 	font-weight: 500;
 	color: #676767;
-	text-transform: capitalize;
+	// text-transform: capitalize;
 	font-size: 12px;
 	letter-spacing: 1px;
 	margin: 5px 0;

@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import OrderSelected from "./orderSelected";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import {
+	selectItemSelected,
+	selectCurrentPOS,
+} from "../../../../../redux/pages/pos/pos.selector";
 
-function Order() {
+function Order({ itemSelected, pos }) {
+	const [hasItemSelected, setHasItemSelected] = useState(false);
+
+	useEffect(() => {
+		setHasItemSelected(itemSelected !== "" ? true : false);
+	}, [itemSelected]);
 	return (
 		<Container>
 			<OrderSelected></OrderSelected>
-			<OrderContainer></OrderContainer>
+			<OrderContainer hasItemSelected={hasItemSelected}></OrderContainer>
 		</Container>
 	);
 }
 
-export default Order;
+const mapStateToProps = createStructuredSelector({
+	itemSelected: selectItemSelected,
+});
+export default connect(mapStateToProps, null)(Order);
 
 const Container = styled.div`
 	display: flex;
@@ -26,6 +40,6 @@ const OrderContainer = styled.div`
 	min-height: calc(100vh-70px);
 	border-radius: 3px;
 	box-shadow: 0.5px 0.5px 10px #d6dbdf;
-	height: 571px;
 	background-image: linear-gradient(white, #f7f8f9);
+	height: ${(props) => (props.hasItemSelected ? "571px" : "648px")};
 `;

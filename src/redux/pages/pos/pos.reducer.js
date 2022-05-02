@@ -3,6 +3,7 @@ import { POSActionTypes } from "./pos.actionTypes";
 const INITIAL_STATE = {
 	itemSelected: "", // item name
 	itemSelectedCount: "", //count
+	orders: [],
 };
 
 const posReducer = (state = INITIAL_STATE, action) => {

@@ -22,7 +22,7 @@ function ItemCounter({
 	const handleSetCount = (value) => {
 		const count = pos.itemSelectedCount + value;
 
-		if (pos.itemSelectedCount.length < 3 && count !== "0") {
+		if (pos.itemSelectedCount.length < 3 && count !== "00") {
 			setItemSelectedCount(count);
 		}
 	};

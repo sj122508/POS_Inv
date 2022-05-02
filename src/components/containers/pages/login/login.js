@@ -35,7 +35,6 @@ function Login({ userLoggin, login }) {
 
 	useEffect(() => {
 		if (loginProgress === true && login.loginProgress === false) {
-			console.log(login, "loginloginloginloginloginloginloginlogin");
 			setLoginProgress(false);
 			navigate(Pages.POS);
 		}
