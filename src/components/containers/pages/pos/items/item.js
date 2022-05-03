@@ -5,16 +5,23 @@ import { connect } from "react-redux";
 import {
 	setItemSelected,
 	setItemSelectedCount,
+	setItemSelectedPrice,
 } from "../../../../../redux/pages/pos/pos.action";
 import { selectCurrentPOS } from "../../../../../redux/pages/pos/pos.selector";
 import { createStructuredSelector } from "reselect";
 
-function Item({ setItemSelected, setItemSelectedCount, pos }) {
+function Item({
+	setItemSelected,
+	setItemSelectedCount,
+	setItemSelectedPrice,
+	pos,
+}) {
 	const [itemClicked, setItemClicked] = useState(false);
 	const [itemSelected, setsItemSelected] = useState("");
 
 	const handleItemTileClick = (value) => {
-		setItemSelected(value);
+		setItemSelected(value.itemName);
+		setItemSelectedPrice(value.itemPrice);
 		setItemSelectedCount("");
 		setItemClicked(value ? true : false);
 	};
@@ -23,12 +30,14 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 		setItemClicked(false);
 		setItemSelected("");
 		setItemSelectedCount("");
+		setItemSelectedPrice("");
 	};
 
 	const handleOkCounter = () => {
 		setItemClicked(false);
 		setItemSelected("");
 		setItemSelectedCount("");
+		setItemSelectedPrice("");
 	};
 
 	return (
@@ -42,7 +51,12 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 			<ContentContainer itemClicked={itemClicked}>
 				<Content>
 					<ItemTile
-						onClick={() => handleItemTileClick("One Something Chix")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "One Something Chix",
+								itemPrice: 100,
+							})
+						}
 						clicked={pos.itemSelected === "One Something Chix" ? true : false}
 					>
 						<ItemImg
@@ -55,7 +69,12 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Two Something Beef")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Two Something Beef",
+								itemPrice: 200,
+							})
+						}
 						clicked={pos.itemSelected === "Two Something Beef" ? true : false}
 					>
 						<ItemImg
@@ -64,11 +83,16 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Two Something Beef</ItemDescription>
-						<ItemPrice>Php 100.00</ItemPrice>
+						<ItemPrice>Php 200.00</ItemPrice>
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Three Something Egg")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Three Something Egg",
+								itemPrice: 150,
+							})
+						}
 						clicked={pos.itemSelected === "Three Something Egg" ? true : false}
 					>
 						<ItemImg
@@ -79,11 +103,16 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Three Something Egg</ItemDescription>
-						<ItemPrice>Php 100.00</ItemPrice>
+						<ItemPrice>Php 150.00</ItemPrice>
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Four Something Horse")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Four Something Horse",
+								itemPrice: 50,
+							})
+						}
 						clicked={pos.itemSelected === "Four Something Horse" ? true : false}
 					>
 						<ItemImg
@@ -94,11 +123,16 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Four Something Horse</ItemDescription>
-						<ItemPrice>Php 100.00</ItemPrice>
+						<ItemPrice>Php 50.00</ItemPrice>
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Five Something Soup")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Five Something Soup",
+								itemPrice: 55,
+							})
+						}
 						clicked={pos.itemSelected === "Five Something Soup" ? true : false}
 					>
 						<ItemImg
@@ -109,11 +143,16 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Five Something Soup</ItemDescription>
-						<ItemPrice>Php 99.00</ItemPrice>
+						<ItemPrice>Php 55.00</ItemPrice>
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Six Something Longga")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Six Something Longga",
+								itemPrice: 55,
+							})
+						}
 						clicked={pos.itemSelected === "Six Something Longga" ? true : false}
 					>
 						<ItemImg
@@ -124,11 +163,16 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Six Something Longga</ItemDescription>
-						<ItemPrice>Php 100.00</ItemPrice>
+						<ItemPrice>Php 55.00</ItemPrice>
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Seven Something Noodles")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Seven Something Noodles",
+								itemPrice: 60,
+							})
+						}
 						clicked={
 							pos.itemSelected === "Seven Something Noodles" ? true : false
 						}
@@ -141,11 +185,16 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Seven Something Noodles</ItemDescription>
-						<ItemPrice>Php 89.00</ItemPrice>
+						<ItemPrice>Php 60.00</ItemPrice>
 					</ItemTile>
 
 					<ItemTile
-						onClick={() => handleItemTileClick("Eight Something Pork")}
+						onClick={() =>
+							handleItemTileClick({
+								itemName: "Eight Something Pork",
+								itemPrice: 65,
+							})
+						}
 						clicked={pos.itemSelected === "Eight Something Pork" ? true : false}
 					>
 						<ItemImg
@@ -156,7 +205,7 @@ function Item({ setItemSelected, setItemSelectedCount, pos }) {
 							<img src="/M1.JPG" />
 						</ItemImg>
 						<ItemDescription>Eight Something Pork</ItemDescription>
-						<ItemPrice>Php 100.00</ItemPrice>
+						<ItemPrice>Php 65.00</ItemPrice>
 					</ItemTile>
 				</Content>
 			</ContentContainer>
@@ -170,7 +219,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
 	setItemSelected: (itemName) => dispatch(setItemSelected(itemName)),
-	setItemSelectedCount: (itemName) => dispatch(setItemSelectedCount(itemName)),
+	setItemSelectedCount: (count) => dispatch(setItemSelectedCount(count)),
+	setItemSelectedPrice: (price) => dispatch(setItemSelectedPrice(price)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);

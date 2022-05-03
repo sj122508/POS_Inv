@@ -9,12 +9,14 @@ import Order from "./orders/order";
 import {
 	setItemSelected,
 	setItemSelectedCount,
+	setItemSelectedPrice,
 } from "../../../../redux/pages/pos/pos.action";
 
-function POS({ setItemSelected, setItemSelectedCount }) {
+function POS({ setItemSelected, setItemSelectedCount, setItemSelectedPrice }) {
 	useEffect(() => {
 		setItemSelected("");
 		setItemSelectedCount("");
+		setItemSelectedPrice("");
 	});
 	return (
 		<Container>
@@ -30,7 +32,8 @@ function POS({ setItemSelected, setItemSelectedCount }) {
 
 const mapDispatchToProps = (dispatch) => ({
 	setItemSelected: (itemName) => dispatch(setItemSelected(itemName)),
-	setItemSelectedCount: (itemName) => dispatch(setItemSelectedCount(itemName)),
+	setItemSelectedCount: (count) => dispatch(setItemSelectedCount(count)),
+	setItemSelectedPrice: (price) => dispatch(setItemSelectedPrice(price)),
 });
 
 export default connect(null, mapDispatchToProps)(POS);

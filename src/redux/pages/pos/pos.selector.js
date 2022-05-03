@@ -7,3 +7,7 @@ export const selectItemSelected = createSelector(
 	[selectPOS],
 	(pos) => pos.itemSelected
 );
+
+export const selectItemSelectedTotalPrice = createSelector([selectPOS], (pos) =>
+	parseFloat(pos.itemSelectedCount * pos.itemSelectedPrice).toLocaleString("en")
+);

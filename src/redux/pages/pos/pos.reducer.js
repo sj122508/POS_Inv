@@ -3,6 +3,7 @@ import { POSActionTypes } from "./pos.actionTypes";
 const INITIAL_STATE = {
 	itemSelected: "", // item name
 	itemSelectedCount: "", //count
+	itemSelectedPrice: "",
 	orders: [],
 };
 
@@ -17,6 +18,11 @@ const posReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				itemSelectedCount: action.payload,
+			};
+		case POSActionTypes.SET_ITEM_SELECTED_PRICE:
+			return {
+				...state,
+				itemSelectedPrice: action.payload,
 			};
 		default:
 			return state;

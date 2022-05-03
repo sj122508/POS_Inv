@@ -2,18 +2,23 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentPOS } from "../../../../../redux/pages/pos/pos.selector";
+import {
+	selectCurrentPOS,
+	selectItemSelectedTotalPrice,
+} from "../../../../../redux/pages/pos/pos.selector";
 
-function OrderSelected({ pos }) {
-	const [itemSelected, setItemSelected] = useState("");
-	const [itemSelectedCount, setItemSelectedCount] = useState("");
+function OrderSelected({ pos, itemSelectedTotalPrice }) {
+	const [selectedItem, setSelectedItem] = useState({});
 	useEffect(() => {
-		setItemSelected(pos.itemSelected);
-		setItemSelectedCount(pos.itemSelectedCount);
+		setSelectedItem({
+			itemName: pos.itemSelected,
+			count: pos.itemSelectedCount,
+		});
+		console.log(pos, "pospospos");
 	}, [pos]);
 	return (
-		<Container show={itemSelected === "" ? false : true}>
-			{itemSelected && (
+		<Container show={selectedItem.itemName === "" ? false : true}>
+			{selectedItem.itemName && (
 				<>
 					<ItemContainer>
 						<label>Product</label>
@@ -23,14 +28,14 @@ function OrderSelected({ pos }) {
 						</Price>
 					</ItemContainer>
 					<ItemDetail>
-						<label>{itemSelected}</label>
+						<label>{selectedItem.itemName}</label>
 						<label>
-							{itemSelectedCount === "" || itemSelectedCount === "0"
+							{selectedItem.count === "" || selectedItem.count === "0"
 								? "0"
-								: itemSelectedCount}
+								: selectedItem.count}
 						</label>
 						<PriceDetail>
-							<label>100.00</label>
+							<label>{itemSelectedTotalPrice}</label>
 						</PriceDetail>
 					</ItemDetail>
 				</>
@@ -40,6 +45,7 @@ function OrderSelected({ pos }) {
 }
 const mapStateToProps = createStructuredSelector({
 	pos: selectCurrentPOS,
+	itemSelectedTotalPrice: selectItemSelectedTotalPrice,
 });
 export default connect(mapStateToProps, null)(OrderSelected);
 
